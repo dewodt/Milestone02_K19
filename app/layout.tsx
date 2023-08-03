@@ -5,6 +5,7 @@ import { Inter, Poppins } from "next/font/google";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import NavBar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           setNavBarExpanded={setNavBarExpanded}
         />
         {children}
+        <Footer />
       </body>
     </html>
   );

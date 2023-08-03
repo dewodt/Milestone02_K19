@@ -89,13 +89,13 @@ const NavBar = ({
               <Link
                 key={index}
                 href={path.url}
-                className="xl:after:block xl:after:border-b-2 xl:after:border-b-custom-blue-green xl:after:scale-x-0 xl:hover:after:scale-x-50 xl:after:duration-300 xl:after:ease-in-out xl:after:transition"
+                className="xl:after:block xl:after:border-b-2 xl:after:border-b-custom-blue-green xl:after:scale-x-0 xl:hover:after:scale-x-50 xl:after:duration-200 xl:after:ease-in-out xl:after:transition"
               >
                 <li
                   className={`py-2 ${
                     pathname.startsWith(path.url)
                       ? "text-custom-blue-green"
-                      : "text-white xl:hover:text-custom-blue-green xl:transition-colors xl:duration-300 xl:ease-in-out"
+                      : "text-white xl:hover:text-custom-blue-green xl:transition-colors xl:duration-200 xl:ease-in-out"
                   }`}
                 >
                   {path.name}
