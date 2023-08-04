@@ -18,7 +18,7 @@ const NavBar = ({
   const paths = [
     {
       name: "Coworking Spaces",
-      url: "/coworking-spaces",
+      url: "/cafe",
     },
     {
       name: "About Us",
