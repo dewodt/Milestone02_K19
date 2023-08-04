@@ -33,6 +33,13 @@ const CafeList = ({
     }
   };
 
+  // Function to format currency
+  const formattedCurrency = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(startPrice!) + ",-";
+
   return (
     <>
       {/* Horizontal line */}
@@ -41,15 +48,17 @@ const CafeList = ({
       {/* Main content */}
       <div key={id} className="flex gap-5 animate-blink md:gap-8 lg:gap-10 w-full">
         {/* Link to the cafe details page */}
-        <Link href={`/cafe/${id}`}>
-          <Image
-            height={300}
-            width={300}
-            src="/upnormal.jpeg"
-            alt="Cafe"
-            className="rounded-xl w-[130px] h-[100px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] object-center object-cover hover:opacity-75 transition-opacity"
-          />
-        </Link>
+        <div className="rounded-xl w-[130px] h-[100px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
+          <Link href={`/cafe/${id}`}>
+            <Image
+              height={300}
+              width={300}
+              src="/upnormal.jpeg"
+              alt="Cafe"
+              className="object-center object-cover hover:scale-110 duration-300 w-full h-full hover:opacity-75 transition-all"
+            />
+          </Link>
+        </div>
         <div className="flex flex-1 text-white gap-0.5 lg:gap-1 flex-col font-inter font-medium">
           {/* Cafe address and title */}
           <h3 className="text-sm lg:text-base mb-0.5 lg:mb-1">{address}</h3>
@@ -68,7 +77,7 @@ const CafeList = ({
           <h5 className="text-[15px] lg:text-base mt-0.5 lg:mt-1">
             Mulai dari{" "}
             <span className="font-bold text-lg lg:text-xl">
-              Rp. {startPrice.toLocaleString("id-ID")},-
+              {formattedCurrency}
             </span>
           </h5>
         </div>
