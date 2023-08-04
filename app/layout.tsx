@@ -33,7 +33,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="id" className={`${inter.variable} ${poppins.variable}`}>
       <body
-        className={`flex flex-col min-h-screen bg-custom-soft-black ${
+        className={`flex min-h-screen flex-col bg-custom-soft-black ${
           navBarExpanded && "overflow-hidden"
         }`}
       >

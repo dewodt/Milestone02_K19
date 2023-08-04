@@ -54,7 +54,7 @@ const NavBar = ({
   return (
     <nav className="sticky left-0 right-0 top-0 z-40 flex h-20 w-full flex-row items-center justify-between bg-custom-black px-5 lg:px-20 xl:h-[90px]">
       {/* Logo Icon */}
-      <Link href="/" className="font-poppins font-bold text-xl xl:text-2xl">
+      <Link href="/" className="font-poppins text-xl font-bold xl:text-2xl">
         <span className="text-custom-blue-green">ganesha</span>
         <span className="text-white">space</span>
         <span className="text-custom-blue-green">.</span>
@@ -70,7 +70,7 @@ const NavBar = ({
       </button>
 
       <div
-        className={`fixed right-0 top-0 z-10 flex h-full w-[230px] flex-col gap-6 bg-custom-black p-5 font-inter font-semibold text-base duration-300 ease-in-out lg:static lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:items-center lg:gap-12 lg:border-none lg:bg-none lg:p-0 xl:text-lg ${
+        className={`fixed right-0 top-0 z-10 flex h-full w-[230px] flex-col gap-6 bg-custom-black p-5 font-inter text-base font-semibold duration-300 ease-in-out lg:static lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:items-center lg:gap-12 lg:border-none lg:bg-none lg:p-0 xl:text-lg ${
           navBarExpanded ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -90,13 +90,13 @@ const NavBar = ({
               <Link
                 key={index}
                 href={path.url}
-                className="xl:after:block xl:after:border-b-2 xl:after:border-b-custom-blue-green xl:after:scale-x-0 xl:hover:after:scale-x-50 xl:after:duration-200 xl:after:ease-in-out xl:after:transition"
+                className="xl:after:block xl:after:scale-x-0 xl:after:border-b-2 xl:after:border-b-custom-blue-green xl:after:transition xl:after:duration-200 xl:after:ease-in-out xl:hover:after:scale-x-50"
               >
                 <li
                   className={`py-2 ${
                     pathname.startsWith(path.url)
                       ? "text-custom-blue-green"
-                      : "text-white xl:hover:text-custom-blue-green xl:transition-colors xl:duration-200 xl:ease-in-out"
+                      : "text-white xl:transition-colors xl:duration-200 xl:ease-in-out xl:hover:text-custom-blue-green"
                   }`}
                 >
                   {path.name}
