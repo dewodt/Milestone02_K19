@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import StarRating from "./StarRatting";
 import Link from "next/link";
+import { start } from "repl";
 
 const CafeList = ({
   id,
@@ -18,7 +19,7 @@ const CafeList = ({
   type: string;
   distance: number;
   rating: number;
-  startPrice: number;
+  startPrice: number | string;
 }) => {
   // Function to format the distance based on whether it's in meters or kilometers
   const formatDistance = (distance: number) => {
@@ -34,11 +35,13 @@ const CafeList = ({
   };
 
   // Function to format currency
-  const formattedCurrency = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(startPrice!) + ",-";
+  const formattedCurrency = (price: number) => {
+    return (new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price!) + ",-")
+  }
 
   return (
     <>
@@ -75,10 +78,18 @@ const CafeList = ({
 
           {/* Starting price */}
           <h5 className="text-[15px] lg:text-base mt-0.5 lg:mt-1">
-            Mulai dari{" "}
-            <span className="font-bold text-lg lg:text-xl">
-              {formattedCurrency}
-            </span>
+            {typeof startPrice === "string" ? (
+              <span className="font-bold text-lg lg:text-xl tracking-wider">
+                {startPrice}
+              </span>
+            ) : (
+              <>
+                Mulai dari{" "}
+                <span className="font-bold text-lg lg:text-xl">
+                  {formattedCurrency(startPrice)}
+                </span>
+              </>
+            )}
           </h5>
         </div>
       </div>

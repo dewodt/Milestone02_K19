@@ -2,8 +2,16 @@
 import React, { useState } from 'react'
 import CafeList from './CafeList'
 import Pagination from './Pagination';
-
-const CafeClient = ({ data }: { data: any }) => {
+interface CafeData {
+    id: number;
+    address: string;
+    title: string;
+    type: string;
+    distance: number; // in meters
+    rating: number;
+    startPrice: number | string; // in rupiah
+  }
+const CafeClient = ({ data }: { data: CafeData[] }) => {
     const listPerPage = 6; // Number of list per page
     const [currentPage, setCurrentPage] = useState(1); // Current page
 
