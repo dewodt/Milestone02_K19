@@ -59,7 +59,7 @@ const Home = () => {
           </p>
 
           {/* Button */}
-          <Link href="/coworking-spaces">
+          <Link href="/cafe">
             <Button color="solid-blue-green">Lebih Lengkap!</Button>
           </Link>
         </div>
@@ -171,7 +171,7 @@ const Home = () => {
                 cocok dan pas untuk mahasiswa.`}
               </p>
               <Link
-                href={`/coworking-spaces/${ourRecommendation.id}`}
+                href={`/cafe/${ourRecommendation.id}`}
                 className="self-center sm:self-start"
               >
                 <Button color="solid-blue-green">Lihat Lebih Detail</Button>

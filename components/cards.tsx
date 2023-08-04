@@ -24,7 +24,7 @@ const Cards = ({ id, title, url, rating, review, priceStart }: CardsProps) => {
     .replace(".", ",");
 
   return (
-    <Link href={`/coworking-spaces/${id}`}>
+    <Link href={`/cafe/${id}`}>
       <article className="group flex flex-col gap-2">
         {/* Image */}
         <div className=" overflow-hidden rounded-lg">
