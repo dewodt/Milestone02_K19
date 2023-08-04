@@ -56,7 +56,8 @@ const NavBar = ({
       {/* Logo Icon */}
       <Link href="/" className="font-poppins font-bold text-xl xl:text-2xl">
         <span className="text-custom-blue-green">ganesha</span>
-        <span className="text-white">space.</span>
+        <span className="text-white">space</span>
+        <span className="text-custom-blue-green">.</span>
       </Link>
 
       {/* Menu Icon Button */}
