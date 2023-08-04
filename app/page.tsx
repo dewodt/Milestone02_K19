@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Button from "@/components/button";
 import Cards from "@/components/cards";
 import type { Metadata } from "next/types";
@@ -8,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 const Home = () => {
+  // Fetch datas from CMS/Google API
+
   // Highest review sorted descending and sliced to 4.
   const mostPopular = [
     { id: "1", title: "Bosscha Space", url: "/itb.jpeg", review: 40000 },
@@ -32,10 +35,16 @@ const Home = () => {
     { id: "4", title: "Bosscha Space 3", url: "/itb.jpeg", priceStart: 55000 },
   ];
 
+  const ourRecommendation = {
+    id: "1",
+    title: "Bosscha Space 1",
+    url: "/itb.jpeg",
+  };
+
   return (
     <main className="flex-auto bg-custom-soft-black">
       {/* Hero */}
-      <section className="relative flex h-[calc(100vh-80px)] w-full items-center p-5 sm:p-10 xl:h-[calc(100vh-90px)] xl:p-20">
+      <section className="relative flex h-[calc(100vh-80px)] w-full items-center p-6 sm:p-10 xl:h-[calc(100vh-90px)] xl:p-20">
         <div className="z-10 flex max-w-4xl flex-col gap-4 xl:gap-7">
           {/* Title */}
           <h1 className="font-poppins text-4xl font-bold tracking-wide text-white xl:text-6xl">
@@ -50,7 +59,9 @@ const Home = () => {
           </p>
 
           {/* Button */}
-          <Button color="solid-blue-green">Browse Now!</Button>
+          <Link href="/coworking-spaces">
+            <Button color="solid-blue-green">Lebih Lengkap!</Button>
+          </Link>
         </div>
 
         {/* BG Image */}
@@ -134,10 +145,40 @@ const Home = () => {
         </section>
 
         {/* Our Recommendation */}
-        <section></section>
-
-        {/* Complete Package */}
-        <section></section>
+        <section className="flex flex-col gap-4 xl:gap-8">
+          <h2 className="font-poppins text-2xl font-bold text-white xl:text-4xl">
+            Our <span className="text-orange-500">Recommendation</span>
+          </h2>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 xl:gap-12">
+            <Image
+              className="aspect-video w-full rounded-lg object-cover object-center sm:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-xl"
+              src={ourRecommendation.url}
+              alt={ourRecommendation.title}
+              width={300}
+              height={150}
+            />
+            <div className="flex w-full flex-col gap-4">
+              <h3 className="font-poppins text-xl font-bold text-white xl:text-2xl">
+                {ourRecommendation.title}
+              </h3>
+              <p className="text text-justify font-inter text-base text-white xl:text-lg">
+                {`Dari hasil survey mengenai Cafe & Co-working Space yang ada di
+                deket ITB, kami merekomendasikan ${ourRecommendation.title} sebagai
+                Cafe & Co-working Space terbaik. ${ourRecommendation.title} berada di lokasi yang
+                strategis, menawarkan makanan dan minuman, serta menyediakan
+                tempat coworking space bagi mahasiswa yang ingin mengerjakan
+                tugas. Selain itu, harga dan kualitas yang ditawarkan sangat
+                cocok dan pas untuk mahasiswa.`}
+              </p>
+              <Link
+                href={`/coworking-spaces/${ourRecommendation.id}`}
+                className="self-center sm:self-start"
+              >
+                <Button color="solid-blue-green">Lihat Lebih Detail</Button>
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );
