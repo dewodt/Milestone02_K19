@@ -27,7 +27,7 @@ const CafeClient = ({ data }: { data: CafeData[] }) => {
                 ))}
             </section>
             {/* Pagination */}
-            <section className="w-full flex items-center justify-center gap-4 py-6 lg:py-10">
+            <section className="w-full flex items-center justify-center gap-2 lg:gap-4 py-6 lg:py-10">
                 <Pagination numberPage={Math.ceil(data.length / listPerPage)} setCurrentNumberPage={setCurrentPage} currentNumberPage={currentPage} />
             </section></>
     )

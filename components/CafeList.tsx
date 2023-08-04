@@ -51,7 +51,7 @@ const CafeList = ({
       {/* Main content */}
       <div key={id} className="flex gap-5 animate-blink md:gap-8 lg:gap-10 w-full">
         {/* Link to the cafe details page */}
-        <div className="rounded-xl w-[130px] h-[100px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
+        <div className="rounded-xl w-[130px] h-[100px] sm:w-[180px] sm:h-[140px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
           <Link href={`/cafe/${id}`}>
             <Image
               height={300}
@@ -79,7 +79,7 @@ const CafeList = ({
           {/* Starting price */}
           <h5 className="text-[15px] lg:text-base mt-0.5 lg:mt-1">
             {typeof startPrice === "string" ? (
-              <span className="font-bold text-lg lg:text-xl tracking-wider">
+              <span className="font-bold text-lg lg:text-xl">
                 {startPrice}
               </span>
             ) : (
