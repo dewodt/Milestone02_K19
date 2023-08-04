@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 const bgColorDefault = {
-  "solid-blue-green": "bg-custom-blue-green text-white xl:hover:bg-opacity-80",
+  "solid-blue-green": "bg-custom-blue-green text-white xl:hover:bg-opacity-90",
   "transparent-blue-green":
     "border-2 border-solid border-custom-blue-green bg-white bg-opacity-0 text-custom-blue-green xl:hover:bg-opacity-20",
 } as const;
@@ -29,7 +29,6 @@ const Button = ({
   paddingY,
   ariaLabel,
 }: ButtonProps) => {
-  
   return (
     <button
       disabled={disabled}
@@ -37,7 +36,7 @@ const Button = ({
       aria-label={ariaLabel}
       onClick={onClick}
       style={{ padding: `${paddingY} ${paddingX}` }}
-      className={`xl:transititon flex h-fit flex-none items-center justify-center rounded-md font-inter font-semibold text-base shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] xl:duration-300 xl:ease-in-out ${
+      className={`xl:transititon flex h-fit flex-none items-center justify-center rounded-md font-inter text-base font-semibold shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] xl:duration-300 xl:ease-in-out ${
         fullWidth ? "w-full" : "w-fit"
       } ${
         disabled
