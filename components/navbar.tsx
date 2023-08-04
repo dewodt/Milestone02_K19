@@ -70,7 +70,7 @@ const NavBar = ({
       </button>
 
       <div
-        className={`fixed right-0 top-0 z-10 flex h-full w-[230px] flex-col gap-6 bg-custom-black p-5 font-inter text-base font-semibold duration-300 ease-in-out lg:static lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:items-center lg:gap-12 lg:border-none lg:bg-none lg:p-0 xl:text-lg ${
+        className={`fixed right-0 top-0 z-10 flex h-full w-[230px] flex-col gap-6 bg-custom-soft-black p-5 font-inter text-base font-semibold duration-300 ease-in-out lg:static lg:h-auto lg:w-auto lg:translate-x-0 lg:flex-row lg:items-center lg:gap-12 lg:border-none lg:bg-transparent lg:p-0 xl:text-lg ${
           navBarExpanded ? "translate-x-0" : "translate-x-full"
         }`}
       >

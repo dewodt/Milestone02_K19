@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 const bgColorDefault = {
-  "solid-blue-green": "bg-custom-blue-green text-white xl:hover:bg-opacity-80",
+  "solid-blue-green": "bg-custom-blue-green text-white xl:hover:bg-opacity-90",
   "transparent-blue-green":
     "border-2 border-solid border-custom-blue-green bg-white bg-opacity-0 text-custom-blue-green xl:hover:bg-opacity-20",
 } as const;
