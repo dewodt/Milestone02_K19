@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import StarRating from "./StarRatting";
 import Link from "next/link";
+import { start } from "repl";
 
 const CafeList = ({
   id,
@@ -18,7 +19,7 @@ const CafeList = ({
   type: string;
   distance: number;
   rating: number;
-  startPrice: number;
+  startPrice: number | string;
 }) => {
   // Function to format the distance based on whether it's in meters or kilometers
   const formatDistance = (distance: number) => {
@@ -34,11 +35,13 @@ const CafeList = ({
   };
 
   // Function to format currency
-  const formattedCurrency = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(startPrice!) + ",-";
+  const formattedCurrency = (price: number) => {
+    return (new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price!) + ",-")
+  }
 
   return (
     <>
@@ -48,7 +51,7 @@ const CafeList = ({
       {/* Main content */}
       <div key={id} className="flex gap-5 animate-blink md:gap-8 lg:gap-10 w-full">
         {/* Link to the cafe details page */}
-        <div className="rounded-xl w-[130px] h-[100px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
+        <div className="rounded-xl w-[130px] h-[100px] sm:w-[180px] sm:h-[140px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
           <Link href={`/cafe/${id}`}>
             <Image
               height={300}
@@ -75,10 +78,18 @@ const CafeList = ({
 
           {/* Starting price */}
           <h5 className="text-[15px] lg:text-base mt-0.5 lg:mt-1">
-            Mulai dari{" "}
-            <span className="font-bold text-lg lg:text-xl">
-              {formattedCurrency}
-            </span>
+            {typeof startPrice === "string" ? (
+              <span className="font-bold text-lg lg:text-xl">
+                {startPrice}
+              </span>
+            ) : (
+              <>
+                Mulai dari{" "}
+                <span className="font-bold text-lg lg:text-xl">
+                  {formattedCurrency(startPrice)}
+                </span>
+              </>
+            )}
           </h5>
         </div>
       </div>

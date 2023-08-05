@@ -11,10 +11,10 @@ const Pagination = ({ numberPage, currentNumberPage, setCurrentNumberPage }: { n
                 <button
                     onClick={() => currentNumberPage > 1 && setCurrentNumberPage(currentNumberPage - 1)}
                     aria-label="Previous Button"
-                    className={`px-2 rounded-lg hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 ${currentNumberPage <= 1 && "cursor-not-allowed"}`}
+                    className={`px-2 hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 ${currentNumberPage <= 1 && "cursor-not-allowed"}`}
                     disabled={currentNumberPage <= 1} // Disable the button when at the first page
                 >
-                    <div className="w-full h-full rounded-lg font-inter font-semibold text-xl flex items-center justify-center">
+                    <div className="w-full h-full font-inter font-semibold text-base lg:text-xl flex items-center justify-center">
                         <p className="text-white">
                             &lt; {/* Display the less-than symbol */}
                         </p>
@@ -25,9 +25,9 @@ const Pagination = ({ numberPage, currentNumberPage, setCurrentNumberPage }: { n
                         key={number}
                         onClick={() => setCurrentNumberPage(number)} // Set the currentNumberPage to the clicked number
                         aria-label={`Page-${number}`}
-                        className={`px-2 ${currentNumberPage===number&&"drop-shadow-[0px_0px_4px_#FFFFFF]"} rounded-lg hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 `}
+                        className={`px-2 ${currentNumberPage===number&&"drop-shadow-[0px_0px_2px_#FFFFFF] scale-105"} hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 `}
                     >
-                        <div className="w-full h-full rounded-lg font-poppins text-xl flex items-center justify-center">
+                        <div className="w-full h-full font-poppins text-base lg:text-xl flex items-center justify-center">
                             <p className="text-white ">
                                 {number} {/* Display the current number */}
                             </p>
@@ -37,10 +37,10 @@ const Pagination = ({ numberPage, currentNumberPage, setCurrentNumberPage }: { n
                 <button
                     onClick={() => currentNumberPage < numberPage && setCurrentNumberPage(currentNumberPage + 1)}
                     aria-label="Next Button"
-                    className={`px-2 rounded-lg hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 ${currentNumberPage >= numberPage && "cursor-not-allowed"}`}
+                    className={`px-2 hover:scale-125 hover:drop-shadow-[0px_0px_4px_#FFFFFF] transition duration-300 ${currentNumberPage >= numberPage && "cursor-not-allowed"}`}
                     disabled={currentNumberPage >= numberPage} // Disable the button when at the last page
                 >
-                    <div className="w-full h-full rounded-lg font-inter font-semibold text-xl flex items-center justify-center">
+                    <div className="w-full h-full font-inter font-semibold text-base lg:text-xl flex items-center justify-center">
                         <p className="text-white">
                             &gt; {/* Display the greater-than symbol */}
                         </p>
