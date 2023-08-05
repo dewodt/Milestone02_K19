@@ -1,6 +1,10 @@
-import Image from "next/image";
+import type { Metadata } from "next/types";
 
-export default function AboutUs() {
+export const metadata: Metadata = {
+  title: "About Us | Ganesha Space",
+};
+
+const AboutUs = () => {
   return (
     <main className="flex flex-auto justify-center p-5 xl:p-20">
       <section className="flex max-w-3xl flex-col items-center gap-4 xl:gap-6">
@@ -21,4 +25,6 @@ export default function AboutUs() {
       </section>
     </main>
   );
-}
+};
+
+export default AboutUs;
