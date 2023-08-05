@@ -118,7 +118,7 @@ const CafeDetailsPage = () => {
                 {/* Price */}
                 <div className="flex flex-col gap-1">
                     <p className="text-base lg:text-xl">Kisaran harga menu: </p>
-                    <h3 className="text-base lg:text-xl">Mulai dari <span className="text-lg md:text-xl lg:text-2xl font-poppins font-bold">{formattedCurrency(data.startPrice)} {data.endPrice && " - " + formattedCurrency(data.endPrice)}</span></h3>
+                    <h3 className="text-sm lg:text-xl">Mulai dari <span className="text-lg md:text-xl lg:text-2xl font-poppins font-bold">{formattedCurrency(data.startPrice)} {data.endPrice && " - " + formattedCurrency(data.endPrice)}</span></h3>
                 </div>
                 {/* Distance */}
                 <div className="flex flex-col">
@@ -143,7 +143,7 @@ const CafeDetailsPage = () => {
                         <WifiIcon size={40} className="fill-white w-[34px] sm:w-[30px] lg:w-[40px] aspect-square" />
                         <div className="flex flex-col gap-1">
                             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins capitalize">Free Wifi</h3>
-                            <p className="text-base lg:text-lg font-inter">Memiliki fasilitas koneksi wifi gratis untuk pelanggan.</p>
+                            <p className="text-sm lg:text-lg font-inter">Memiliki fasilitas koneksi wifi gratis untuk pelanggan.</p>
                         </div>
                     </div>
                 }
@@ -153,7 +153,7 @@ const CafeDetailsPage = () => {
                         <UtenilsIcon size={40} className="fill-white w-[49px] sm:w-[30px] lg:w-[40px] aspect-square" />
                         <div className="flex flex-col gap-1">
                             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins capitalize">Menu Makanan</h3>
-                            <p className="text-base lg:text-lg font-inter">Memiliki menu makanan bagi pelangggan yang ingin mengenyangkan perut.</p>
+                            <p className="text-sm lg:text-lg font-inter">Memiliki menu makanan bagi pelangggan yang ingin mengenyangkan perut.</p>
                         </div>
                     </div>
                 }
@@ -163,7 +163,7 @@ const CafeDetailsPage = () => {
                         <SmokingIcon size={40} className="fill-white w-[30px] sm:w-[30px] lg:w-[40px] aspect-square" />
                         <div className="flex flex-col gap-1">
                             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins capitalize">Smoking Area</h3>
-                            <p className="text-base lg:text-lg font-inter">Tersedia Fasilitas smoking area bagi perokok.</p>
+                            <p className="text-sm lg:text-lg font-inter">Tersedia Fasilitas smoking area bagi perokok.</p>
                         </div>
                     </div>
                 }
@@ -173,7 +173,7 @@ const CafeDetailsPage = () => {
                         <CarIcon size={40} className="fill-white w-[30px] sm:w-[30px] lg:w-[40px] aspect-square" />
                         <div className="flex flex-col gap-1">
                             <h3 className="text-lg md:text-xl lg:text-2xl font-semibold font-poppins capitalize">Tempat Parkir</h3>
-                            <p className="text-base lg:text-lg font-inter">Tempat parkir yang luas dan aman.</p>
+                            <p className="text-sm lg:text-lg font-inter">Tempat parkir yang luas dan aman.</p>
                         </div>
                     </div>
                 }
