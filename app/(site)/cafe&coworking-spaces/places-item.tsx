@@ -1,10 +1,8 @@
 import Image from "next/image";
-import React from "react";
-import StarRating from "./StarRatting";
 import Link from "next/link";
-import { start } from "repl";
+import StarRating from "../../../components/star-rating";
 
-const CafeList = ({
+const PlacesItem = ({
   id,
   address,
   title,
@@ -36,36 +34,41 @@ const CafeList = ({
 
   // Function to format currency
   const formattedCurrency = (price: number) => {
-    return (new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(price!) + ",-")
-  }
+    return (
+      new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+      }).format(price!) + ",-"
+    );
+  };
 
   return (
     <>
       {/* Horizontal line */}
-      <span className="w-full bg-white h-0.5" />
+      <span className="h-0.5 w-full bg-white" />
 
       {/* Main content */}
-      <div key={id} className="flex gap-5 animate-blink md:gap-8 lg:gap-10 w-full">
+      <div
+        key={id}
+        className="flex w-full animate-blink gap-5 md:gap-8 lg:gap-10"
+      >
         {/* Link to the cafe details page */}
-        <div className="rounded-xl w-[130px] h-[100px] sm:w-[180px] sm:h-[140px] md:w-[230px] md:h-[180px] lg:w-[350px] lg:h-[250px] overflow-hidden">
-          <Link href={`/cafe/${id}`}>
+        <div className="h-[100px] w-[130px] overflow-hidden rounded-xl sm:h-[140px] sm:w-[180px] md:h-[180px] md:w-[230px] lg:h-[250px] lg:w-[350px]">
+          <Link href={`/cafe&coworking-spaces/${id}`}>
             <Image
               height={300}
               width={300}
               src="/upnormal.jpeg"
-              alt="Cafe"
-              className="object-center object-cover hover:scale-110 duration-300 w-full h-full hover:opacity-75 transition-all"
+              alt={title}
+              className="h-full w-full object-cover object-center transition-all duration-300 hover:scale-110 hover:opacity-75"
             />
           </Link>
         </div>
-        <div className="flex flex-1 text-white gap-0.5 lg:gap-1 flex-col font-inter font-medium">
+        <div className="flex flex-1 flex-col gap-0.5 font-inter font-medium text-white lg:gap-1">
           {/* Cafe address and title */}
-          <h3 className="text-sm lg:text-base mb-0.5 lg:mb-1">{address}</h3>
-          <h2 className="text-lg lg:text-2xl font-extrabold">{title}</h2>
+          <h3 className="mb-0.5 text-sm lg:mb-1 lg:text-base">{address}</h3>
+          <h2 className="text-lg font-extrabold lg:text-2xl">{title}</h2>
 
           {/* Cafe type and distance from ITB */}
           <div className="flex flex-col gap-[1px] text-sm lg:text-base">
@@ -77,15 +80,13 @@ const CafeList = ({
           <StarRating rating={rating} />
 
           {/* Starting price */}
-          <h5 className="text-[15px] lg:text-base mt-0.5 lg:mt-1">
+          <h5 className="mt-0.5 text-[15px] lg:mt-1 lg:text-base">
             {typeof startPrice === "string" ? (
-              <span className="font-bold text-lg lg:text-xl">
-                {startPrice}
-              </span>
+              <span className="text-lg font-bold lg:text-xl">{startPrice}</span>
             ) : (
               <>
                 Mulai dari{" "}
-                <span className="font-bold text-lg lg:text-xl">
+                <span className="text-lg font-bold lg:text-xl">
                   {formattedCurrency(startPrice)}
                 </span>
               </>
@@ -97,5 +98,5 @@ const CafeList = ({
   );
 };
 
-// Export the CafeList component as the default export
-export default CafeList;
+// Export the PlacesItem component as the default export
+export default PlacesItem;
