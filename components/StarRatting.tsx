@@ -1,4 +1,4 @@
-import StarHalfIcon from "./icons/star-half-icon copy";
+import StarHalfIcon from "./icons/star-half-icon";
 import StarIcon from "./icons/star-icon";
 
 const StarRating = ({ rating }: { rating: number }) => {
