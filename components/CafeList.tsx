@@ -65,7 +65,7 @@ const CafeList = ({
         <div className="flex flex-1 text-white gap-0.5 lg:gap-1 flex-col font-inter font-medium">
           {/* Cafe address and title */}
           <h3 className="text-sm lg:text-base mb-0.5 lg:mb-1">{address}</h3>
-          <h2 className="text-xl lg:text-2xl font-extrabold">{title}</h2>
+          <h2 className="text-lg lg:text-2xl font-extrabold">{title}</h2>
 
           {/* Cafe type and distance from ITB */}
           <div className="flex flex-col gap-[1px] text-sm lg:text-base">
