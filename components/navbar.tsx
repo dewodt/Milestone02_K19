@@ -17,8 +17,8 @@ const NavBar = ({
   // List of paths
   const paths = [
     {
-      name: "Coworking Spaces",
-      url: "/cafe",
+      name: "Cafe & Coworking Spaces",
+      url: "/cafe&coworking-spaces",
     },
     {
       name: "About Us",
