@@ -1,191 +1,157 @@
+import type { Metadata } from "next";
+import type { Place } from "@/types/cms";
+import Image from "next/image";
+import { PortableText, toPlainText } from "@portabletext/react";
+import { clientFetch } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
+import {
+  getFormattedCurrency,
+  getFormattedDistance,
+  getFormattedHourMinute,
+  getFormattedReviews,
+} from "@/lib/utils";
 import StarRating from "@/components/star-rating";
 import CarIcon from "@/components/icons/car-icon";
 import SmokingIcon from "@/components/icons/smoking-icon";
 import UtenilsIcon from "@/components/icons/utenils-icon";
 import WifiIcon from "@/components/icons/wifi-icon";
-import Image from "next/image";
-import React from "react";
-import type { Metadata, ResolvingMetadata } from "next";
 
-// type Props = {
-//   params: { id: string }
-//   searchParams: { [key: string]: string | string[] | undefined }
-// }
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  // Get id
+  const { id } = params;
 
-// export async function generateMetadata(
-//   { params, searchParams }: Props,
-//   parent?: ResolvingMetadata
-// ): Promise<Metadata> {
-//   // read route params
-//   const id = params.id
+  //  Get place data
+  const place = await clientFetch<Place>(
+    `*[_type == "places" && _id == "${id}"][0]`
+  );
 
-//   // fetch data
-//   const product = await fetch(`https://.../${id}`).then((res) => res.json())
-
-//   return {
-//     title: product.title,
-
-//   }
-// }
-
-export const metadata: Metadata = {
-  title: "Cafe details | Ganesha Space",
-};
-
-const CafeDetailsPage = () => {
-  const data = {
-    id: 8,
-    address:
-      "Jl. Ganesa No.3, Lb. Siliwangi, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132",
-    title: "Chill Cafe & Co-working",
-    placeType: "Cafe & Co-working Space",
-    distance: 700,
-    rating: 4.3,
-    startPrice: 35000, // Rp35,000
-    endPrice: 120000, // Rp35,000
-    review: 8120,
-    openHours: "12:00",
-    closeHours: "24:00",
-    alwaysOpen: false,
-    imageUrl: [
-      "/upnormal.jpeg",
-      "/itb.jpeg",
-      "/upnormal.jpeg",
-      "/itb.jpeg",
-      "/upnormal.jpeg",
-      "/upnormal.jpeg",
-      "/upnormal.jpeg",
-    ],
-    facilities: {
-      wifi: true,
-      menu: true,
-      smokingArea: true,
-      parkingArea: true,
-    },
-    embedMapUrl:
-      "https://www.google.com/maps/embed/v1/place?q=Upnormal+Coffee+Roaster+Juanda+(Dago),+Jalan+Ir.+H.+Juanda,+Lebakgede,+Kota+Bandung,+Jawa+Barat,+Indonesia&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8",
-    description:
-      "One Eighty Coffee and Music adalah konsep kafe pertama di Bandung yang mengungsung interior kolam renang. Tempat nongkrong yang unik tersebut diresmikan pada tanggal 15 Juli 2016 lalu oleh seorang pemilik bernama Alvin Theardy. Di dalam kafe terdapat area outdoor dengan konsep kolam renang, dimana anda bisa menikmati suasana kafe sembari bermain air. Anda juga bisa melakukan aktivitas seperti work from cafe atau belajar di One Eighty Coffee and Music. Suasana ruangan indoor adalah tempat paling pas bagi anda yang sedang ingin fokus. Dengan desain interior yang nyaman dan mendukung, anda bisa mengerjakan suatu project secara tenang serta nyaman. Sebaiknya datang di pagi hari bila anda ingin melakukan aktivitas work from cafe tersebut.Harga makanan di One Eighty terbilang cukup standar untuk sejenis tempat nongkrong seperti ini. Aneka hidangannya juga beragam dan memiliki cita rasa yang nikmat. Menu hidangannya tersedia dalam berbagai jenis hidangan mulai dari Nusantara hingga Western. Selain itu, juga terdapat hidangan breakfast, brunch, lunch, hingga cemilan ringan untuk menemani waktu nongkrong. One Eighty juga menyajikan menu Tropical Mojito Mocktail yang fresh dan segar dengan beragam varian.",
+  return {
+    title: `${place.name} | Ganesha Space`,
+    description: toPlainText(place.about),
   };
+}
 
-  // Function to format the distance based on whether it's in meters or kilometers
-  const formatDistance = (distance: number) => {
-    if (distance > 999) {
-      const km = (distance / 1000).toLocaleString("id-ID", {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1,
-      });
-      return `${km} km`; // Return the distance in kilometers with 1 decimal point
-    } else {
-      return `${distance.toLocaleString("id-ID")} m`; // Return the distance in meters
-    }
-  };
+const CafeCoworkingSpacesDetail = async ({ params }: { params: { id: string } }) => {
+  // Get id
+  const { id } = params;
 
-  const formattedCurrency = (price: number) =>
-    new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(price!);
+  //  Get place data
+  const place = await clientFetch<Place>(
+    `*[_type == "places" && _id == "${id}"][0]`
+  );
 
-  const formattedReview = new Intl.NumberFormat("id-ID").format(data.review!);
+  // Get formatted values
+  const formattedReview = getFormattedReviews(place.reviews);
+  const formattedDistance = getFormattedDistance(place.distanceFromITB);
+  const formattedPriceStart = getFormattedCurrency(place.priceStart);
+  const formattedPriceEnd = getFormattedCurrency(place.priceEnd!);
+  const formattedOpeningHour = getFormattedHourMinute(
+    new Date(place.openingHour)
+  );
+  const formattedClosingHour = getFormattedHourMinute(
+    new Date(place.closingHour)
+  );
 
   return (
     <div className="flex min-h-screen w-full flex-col gap-6 px-6 py-6 md:px-12 lg:gap-10 lg:px-16 lg:py-10 2xl:px-48">
       {/* Title */}
       <h1 className=" font-poppins text-2xl font-bold text-white md:text-3xl lg:text-4xl">
-        {data.title}
+        {place.name}
       </h1>
 
       {/* Ratings and address */}
       <section className="-mt-3 flex w-full gap-7 lg:-mt-6 lg:gap-10">
         {/* Review */}
         <div className="flex flex-col gap-x-5 md:flex-row">
-          <StarRating rating={data.rating} />
+          <StarRating rating={place.rating} />
           <h2 className="text-sm text-white lg:text-lg">
             Lebih dari {formattedReview}+ reviews
           </h2>
         </div>
         {/* Address */}
-        <div className="text-sm text-white lg:text-lg">{data.address}</div>
+        <div className="text-sm text-white lg:text-lg">{place.address}</div>
       </section>
 
       {/* Image container */}
       <section className="flex h-[150px] w-full gap-2 md:h-[280px] md:gap-4 lg:h-[500px] lg:gap-6">
         {/* First Image */}
-        {data.imageUrl[0] && (
+        {place.images[0] && (
           <Image
-            src={data.imageUrl[0]}
+            src={urlForImage(place.images[0]).url()}
             width="1920"
             height={1080}
             className={`${
-              data.imageUrl.length === 1
+              place.images.length === 1
                 ? "w-full"
                 : "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]"
             } h-full rounded-xl object-cover object-center`}
-            alt="image"
+            alt={place.images[0].alt}
           />
         )}
         <div className="flex flex-1 flex-col gap-2 md:gap-4 lg:gap-6">
           {/* Container 2nd and 3rd */}
           <div
             className={`flex w-full ${
-              data.imageUrl.length > 3 ? "flex-row" : "flex-col"
+              place.images.length > 3 ? "flex-row" : "flex-col"
             } gap-2 md:gap-4 lg:gap-6 ${
-              data.imageUrl.length > 2
+              place.images.length > 2
                 ? "h-[calc(50%-6px)] md:h-[calc(50%-8px)] lg:h-[calc(50%-12px)]"
                 : "h-full"
             }`}
           >
-            {data.imageUrl[1] && (
+            {place.images[1] && (
               <Image
-                src={data.imageUrl[1]}
+                src={urlForImage(place.images[1]).url()}
                 width="1920"
                 height={1080}
                 className={` h-full rounded-xl object-cover object-center ${
-                  data.imageUrl.length > 3
+                  place.images.length > 3
                     ? "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]"
                     : "w-full"
                 }`}
-                alt="image"
+                alt={place.images[1].alt}
               />
             )}
-            {data.imageUrl[2] && (
+            {place.images[2] && (
               <Image
-                src={data.imageUrl[2]}
+                src={urlForImage(place.images[2]).url()}
                 width="1920"
                 height={1080}
                 className={`${
-                  data.imageUrl.length === 3
+                  place.images.length === 3
                     ? "w-full"
                     : "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]"
                 } h-full rounded-xl object-cover object-center`}
-                alt="image"
+                alt={place.images[2].alt}
               />
             )}
           </div>
           {/* Container 4th and 5th */}
           <div className="flex h-[calc(50%-6px)] w-full gap-2 md:h-[calc(50%-8px)] md:gap-4 lg:h-[calc(50%-12px)] lg:gap-6">
-            {data.imageUrl[3] && (
+            {place.images[3] && (
               <Image
-                src={data.imageUrl[3]}
+                src={urlForImage(place.images[3]).url()}
                 width="1920"
                 height={1080}
                 className={`${
-                  data.imageUrl.length === 4
+                  place.images.length === 4
                     ? "w-full"
                     : "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]"
                 } h-full rounded-xl object-cover object-center`}
-                alt="image"
+                alt={place.images[3].alt}
               />
             )}
-            {data.imageUrl[4] && (
+            {place.images[4] && (
               <Image
-                src={data.imageUrl[4]}
+                src={urlForImage(place.images[4]).url()}
                 width="1920"
                 height={1080}
                 className={`h-full w-[calc(50%-6px)] rounded-xl object-cover object-center md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]`}
-                alt="image"
+                alt={place.images[4].alt}
               />
             )}
           </div>
@@ -200,8 +166,8 @@ const CafeDetailsPage = () => {
           <h3 className="text-sm lg:text-xl">
             Mulai dari{" "}
             <span className="font-poppins text-lg font-bold md:text-xl lg:text-2xl">
-              {formattedCurrency(data.startPrice)}{" "}
-              {data.endPrice && " - " + formattedCurrency(data.endPrice)}
+              {formattedPriceStart}{" "}
+              {place.priceEnd && " - " + formattedPriceEnd}
             </span>
           </h3>
         </div>
@@ -209,16 +175,16 @@ const CafeDetailsPage = () => {
         <div className="flex flex-col">
           <p className="text-base lg:text-xl">Jarak dari ITB: </p>
           <h3 className="font-poppins text-lg font-bold md:text-xl lg:text-2xl">
-            {formatDistance(data.distance)}
+            {formattedDistance}
           </h3>
         </div>
         {/* Opening hours */}
         <div className="flex flex-col">
           <p className="text-base lg:text-xl">Jam Buka </p>
           <h3 className="font-poppins text-lg font-bold md:text-xl lg:text-2xl">
-            {data.alwaysOpen
+            {place.is24Hours
               ? "24 Hours"
-              : data.openHours + (data.closeHours && " - " + data.closeHours)}
+              : `${formattedOpeningHour} - ${formattedClosingHour}`}
           </h3>
         </div>
       </section>
@@ -229,7 +195,7 @@ const CafeDetailsPage = () => {
       {/* Details Facilities */}
       <section className="flex flex-col gap-3 text-white md:gap-4 lg:gap-6">
         {/* Wifi */}
-        {data.facilities.wifi && (
+        {place.isFreeWifiAvailable && (
           <div className="flex gap-5 md:gap-7">
             <WifiIcon
               size={40}
@@ -246,7 +212,7 @@ const CafeDetailsPage = () => {
           </div>
         )}
         {/* Menu */}
-        {data.facilities.menu && (
+        {place.isFoodMenuAvailable && (
           <div className="flex gap-5 md:gap-7">
             <UtenilsIcon
               size={40}
@@ -264,7 +230,7 @@ const CafeDetailsPage = () => {
           </div>
         )}
         {/* Smoking Area */}
-        {data.facilities.smokingArea && (
+        {place.isSmokingAreaAvailable && (
           <div className="flex gap-5 md:gap-7">
             <SmokingIcon
               size={40}
@@ -281,7 +247,7 @@ const CafeDetailsPage = () => {
           </div>
         )}
         {/* Parking Area */}
-        {data.facilities.parkingArea && (
+        {place.isParkingSpaceAvailable && (
           <div className="flex gap-5 md:gap-7">
             <CarIcon
               size={40}
@@ -304,10 +270,21 @@ const CafeDetailsPage = () => {
 
       {/* About Section */}
       <section className="flex flex-col gap-3 text-white md:gap-4 lg:gap-6">
-        <h3 className="font-poppins text-lg font-bold capitalize md:text-xl lg:text-2xl">
-          Tentang {data.title}
+        <h3 className="font-poppins text-lg font-bold capitalize xl:text-xl">
+          Tentang {place.name}
         </h3>
-        <p className="text-sm lg:text-lg">{data.description}</p>
+        <PortableText
+          value={place.about}
+          components={{
+            block: {
+              normal: ({ children }) => (
+                <p className="text-justify font-inter text-base xl:text-lg">
+                  {children}
+                </p>
+              ),
+            },
+          }}
+        />
       </section>
 
       {/* Horizontal line */}
@@ -322,7 +299,7 @@ const CafeDetailsPage = () => {
           className="h-[250px] w-full overflow-hidden md:h-[300px] lg:h-[400px]"
           id="canvas-for-googlemap"
         >
-          <iframe className="h-full w-full" src={data.embedMapUrl} />
+          <iframe className="h-full w-full" src={place.googleMapsURL} />
         </div>
       </section>
       {/* Horizontal line */}
@@ -331,4 +308,4 @@ const CafeDetailsPage = () => {
   );
 };
 
-export default CafeDetailsPage;
+export default CafeCoworkingSpacesDetail;
