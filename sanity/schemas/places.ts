@@ -1,9 +1,18 @@
 import { type SchemaTypeDefinition } from "sanity";
+import { PinIcon } from "@sanity/icons";
 
-const place: SchemaTypeDefinition = {
+const places: SchemaTypeDefinition = {
   name: "places",
   type: "document",
   title: "Places",
+  icon: PinIcon,
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "address",
+      media: "images.0.asset",
+    },
+  },
   fields: [
     {
       name: "name",
@@ -52,7 +61,6 @@ const place: SchemaTypeDefinition = {
       name: "priceStart",
       type: "number",
       title: "Price Start",
-      validation: (Rule) => Rule.required(),
     },
     {
       name: "priceEnd",
@@ -139,6 +147,4 @@ const place: SchemaTypeDefinition = {
   ],
 };
 
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [place],
-};
+export default places;

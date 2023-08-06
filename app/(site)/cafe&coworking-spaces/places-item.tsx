@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Place } from "@/types/cms";
@@ -46,12 +48,14 @@ const PlacesItem = ({ place }: { place: Place }) => {
           <StarRating rating={place.rating} />
 
           {/* Starting price */}
-          <h5 className="mt-0.5 text-[15px] lg:mt-1 lg:text-base">
-            Mulai dari{" "}
-            <span className="text-lg font-bold lg:text-xl">
-              {formattedPriceStart}
-            </span>
-          </h5>
+          {!isNaN(place.priceStart) && (
+            <h5 className="mt-0.5 text-[15px] lg:mt-1 lg:text-base">
+              Mulai dari{" "}
+              <span className="text-lg font-bold lg:text-xl">
+                {formattedPriceStart}
+              </span>
+            </h5>
+          )}
         </div>
       </div>
     </>

@@ -3,43 +3,37 @@ import Link from "next/link";
 import Button from "@/components/button";
 import Cards from "@/components/cards";
 import type { Metadata } from "next/types";
+import type { Place } from "@/types/cms";
+import { urlForImage } from "@/sanity/lib/image";
+import { clientFetch } from "@/sanity/lib/client";
 
 export const metadata: Metadata = {
   title: "Ganesha Space",
 };
 
-const Home = () => {
-  // Fetch datas from CMS/Google API
+const Home = async () => {
+  // Fetch datas from CMS
+  const places = await clientFetch<Place[]>("*[_type == 'places']");
 
   // Highest review sorted descending and sliced to 4.
-  const mostPopular = [
-    { id: "1", title: "Bosscha Space", url: "/itb.jpeg", review: 40000 },
-    { id: "2", title: "Bosscha Space 2", url: "/itb.jpeg", review: 30000 },
-    { id: "3", title: "Bosscha Space 3", url: "/itb.jpeg", review: 20000 },
-    { id: "4", title: "Bosscha Space 3", url: "/itb.jpeg", review: 20000 },
-  ];
+  const mostPopularPlaces = places
+    .sort((placeA, placeB) => placeB.reviews - placeA.reviews)
+    .slice(0, 4);
 
   // Highest rating sorted descending sliced to 4
-  const mostLoved = [
-    { id: "1", title: "Bosscha Space", url: "/itb.jpeg", rating: 4.0 },
-    { id: "2", title: "Bosscha Space 2", url: "/itb.jpeg", rating: 4.4 },
-    { id: "3", title: "Bosscha Space 3", url: "/itb.jpeg", rating: 4.3 },
-    { id: "4", title: "Bosscha Space 3", url: "/itb.jpeg", rating: 4.2 },
-  ];
+  const mostLovedPlaces = places
+    .sort((placeA, placeB) => placeB.rating - placeA.rating)
+    .slice(0, 4);
 
   // Lowest price sorted ascending sliced to 4
-  const mostAffordable = [
-    { id: "1", title: "Bosscha Space", url: "/itb.jpeg", priceStart: 40000 },
-    { id: "2", title: "Bosscha Space 2", url: "/itb.jpeg", priceStart: 45000 },
-    { id: "3", title: "Bosscha Space 3", url: "/itb.jpeg", priceStart: 50000 },
-    { id: "4", title: "Bosscha Space 3", url: "/itb.jpeg", priceStart: 55000 },
-  ];
+  const mostAffordablePlaces = places
+    .filter((place) => !isNaN(place.priceStart))
+    .sort((placeA, placeB) => placeA.priceStart - placeB.priceStart)
+    .slice(0, 4);
 
-  const ourRecommendation = {
-    id: "1",
-    title: "Bosscha Space 1",
-    url: "/itb.jpeg",
-  };
+  const placeRecommendation = await clientFetch<Place>(
+    `*[_type == "placeRecommendation"]{placeRecommendation->}[0].placeRecommendation`
+  );
 
   return (
     <main className="flex-auto bg-custom-soft-black">
@@ -59,7 +53,7 @@ const Home = () => {
           </p>
 
           {/* Button */}
-          <Link href="/cafe">
+          <Link href="/cafe&coworking-spaces">
             <Button color="solid-blue-green">Lebih Lengkap!</Button>
           </Link>
         </div>
@@ -84,16 +78,8 @@ const Home = () => {
 
           {/* Grids */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:grid-cols-4 xl:gap-12">
-            {mostPopular.map((item) => {
-              return (
-                <Cards
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  url={item.url}
-                  review={item.review}
-                />
-              );
+            {mostPopularPlaces.map((item) => {
+              return <Cards key={item._id} _id={item._id} showReviews={true} />;
             })}
           </div>
         </section>
@@ -107,16 +93,8 @@ const Home = () => {
 
           {/* Grids */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:grid-cols-4 xl:gap-12">
-            {mostLoved.map((item) => {
-              return (
-                <Cards
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  url={item.url}
-                  rating={item.rating}
-                />
-              );
+            {mostLovedPlaces.map((item) => {
+              return <Cards key={item._id} _id={item._id} showRating={true} />;
             })}
           </div>
         </section>
@@ -130,15 +108,9 @@ const Home = () => {
 
           {/* Grids */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:grid-cols-4 xl:gap-12">
-            {mostAffordable.map((item) => {
+            {mostAffordablePlaces.map((item) => {
               return (
-                <Cards
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  url={item.url}
-                  priceStart={item.priceStart}
-                />
+                <Cards key={item._id} _id={item._id} showPriceStart={true} />
               );
             })}
           </div>
@@ -152,26 +124,26 @@ const Home = () => {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 xl:gap-12">
             <Image
               className="aspect-video w-full rounded-lg object-cover object-center sm:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-xl"
-              src={ourRecommendation.url}
-              alt={ourRecommendation.title}
+              src={urlForImage(placeRecommendation.images[0]).url()}
+              alt={placeRecommendation.images[0].alt}
               width={300}
               height={150}
             />
             <div className="flex w-full flex-col gap-4">
               <h3 className="font-poppins text-xl font-bold text-white xl:text-2xl">
-                {ourRecommendation.title}
+                {placeRecommendation.name}
               </h3>
               <p className="text text-justify font-inter text-base text-white xl:text-lg">
                 {`Dari hasil survey mengenai Cafe & Co-working Space yang ada di
-                deket ITB, kami merekomendasikan ${ourRecommendation.title} sebagai
-                Cafe & Co-working Space terbaik. ${ourRecommendation.title} berada di lokasi yang
+                deket ITB, kami merekomendasikan ${placeRecommendation.name} sebagai
+                Cafe & Co-working Space terbaik. ${placeRecommendation.name} berada di lokasi yang
                 strategis, menawarkan makanan dan minuman, serta menyediakan
                 tempat coworking space bagi mahasiswa yang ingin mengerjakan
                 tugas. Selain itu, harga dan kualitas yang ditawarkan sangat
                 cocok dan pas untuk mahasiswa.`}
               </p>
               <Link
-                href={`/cafe/${ourRecommendation.id}`}
+                href={`/cafe&coworking-spaces/${placeRecommendation._id}`}
                 className="self-center sm:self-start"
               >
                 <Button color="solid-blue-green">Lihat Lebih Detail</Button>
