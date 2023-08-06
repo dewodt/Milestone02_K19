@@ -1,6 +1,6 @@
 import { type SchemaTypeDefinition } from "sanity";
 
-const place: SchemaTypeDefinition = {
+const places: SchemaTypeDefinition = {
   name: "places",
   type: "document",
   title: "Places",
@@ -52,7 +52,6 @@ const place: SchemaTypeDefinition = {
       name: "priceStart",
       type: "number",
       title: "Price Start",
-      validation: (Rule) => Rule.required(),
     },
     {
       name: "priceEnd",
@@ -139,6 +138,4 @@ const place: SchemaTypeDefinition = {
   ],
 };
 
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [place],
-};
+export default places;

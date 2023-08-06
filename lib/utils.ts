@@ -26,3 +26,6 @@ export const getFormattedCurrency = (price: number) =>
 
 export const getFormattedReviews = (reviews: number) =>
   new Intl.NumberFormat("id-ID").format(reviews);
+
+export const getFormattedRating = (rating: number) =>
+  (Math.round(rating! * 10) / 10).toFixed(1).replace(".", ",");
