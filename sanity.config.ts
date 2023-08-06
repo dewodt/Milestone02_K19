@@ -10,6 +10,7 @@ import { deskTool } from "sanity/desk";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import places from "./sanity/schemas/places";
 import recommendation from "./sanity/schemas/place-recommendation";
+import { HeartIcon } from "@sanity/icons";
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
@@ -36,15 +37,19 @@ export default defineConfig({
           .title("Content")
           .items([
             // Our singleton type has a list item with a custom child
-            S.listItem().title("Place Recommendation").id("placeRecommendation").child(
-              // Instead of rendering a list of documents, we render a single
-              // document, specifying the `documentId` manually to ensure
-              // that we're editing the single instance of the document
-              S.document()
-                .schemaType("placeRecommendation")
-                .title("Place Recommendation")
-                .documentId("placeRecommendation")
-            ),
+            S.listItem()
+              .title("Place Recommendation")
+              .id("placeRecommendation")
+              .icon(HeartIcon)
+              .child(
+                // Instead of rendering a list of documents, we render a single
+                // document, specifying the `documentId` manually to ensure
+                // that we're editing the single instance of the document
+                S.document()
+                  .schemaType("placeRecommendation")
+                  .title("Place Recommendation")
+                  .documentId("placeRecommendation")
+              ),
 
             // Regular document types
             S.documentTypeListItem("places").title("Places"),
