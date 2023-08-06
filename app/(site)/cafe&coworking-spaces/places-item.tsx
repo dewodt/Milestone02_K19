@@ -1,47 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Place } from "@/types/cms";
+import { urlForImage } from "@/sanity/lib/image";
+import { getFormattedDistance, getFormattedCurrency } from "@/lib/utils";
 import StarRating from "../../../components/star-rating";
 
-const PlacesItem = ({
-  id,
-  address,
-  title,
-  type,
-  distance,
-  rating,
-  startPrice,
-}: {
-  id: number;
-  address: string;
-  title: string;
-  type: string;
-  distance: number;
-  rating: number;
-  startPrice: number | string;
-}) => {
-  // Function to format the distance based on whether it's in meters or kilometers
-  const formatDistance = (distance: number) => {
-    if (distance > 999) {
-      const km = (distance / 1000).toLocaleString("id-ID", {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1,
-      });
-      return `${km} km`; // Return the distance in kilometers with 1 decimal point
-    } else {
-      return `${distance.toLocaleString("id-ID")} m`; // Return the distance in meters
-    }
-  };
-
-  // Function to format currency
-  const formattedCurrency = (price: number) => {
-    return (
-      new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        minimumFractionDigits: 0,
-      }).format(price!) + ",-"
-    );
-  };
+const PlacesItem = ({ place }: { place: Place }) => {
+  // Get formatted values
+  const formattedDistance = getFormattedDistance(place.distanceFromITB);
+  const formattedPriceStart = getFormattedCurrency(place.priceStart);
 
   return (
     <>
@@ -49,48 +16,41 @@ const PlacesItem = ({
       <span className="h-0.5 w-full bg-white" />
 
       {/* Main content */}
-      <div
-        key={id}
-        className="flex w-full animate-blink gap-5 md:gap-8 lg:gap-10"
-      >
+      <div className="flex w-full animate-blink gap-5 md:gap-8 lg:gap-10">
         {/* Link to the cafe details page */}
         <div className="h-[100px] w-[130px] overflow-hidden rounded-xl sm:h-[140px] sm:w-[180px] md:h-[180px] md:w-[230px] lg:h-[250px] lg:w-[350px]">
-          <Link href={`/cafe&coworking-spaces/${id}`}>
+          <Link href={`/cafe&coworking-spaces/${place._id}`}>
             <Image
               height={300}
               width={300}
-              src="/upnormal.jpeg"
-              alt={title}
+              src={urlForImage(place.images[0]).url()}
+              alt={place.images[0].alt}
               className="h-full w-full object-cover object-center transition-all duration-300 hover:scale-110 hover:opacity-75"
             />
           </Link>
         </div>
         <div className="flex flex-1 flex-col gap-0.5 font-inter font-medium text-white lg:gap-1">
           {/* Cafe address and title */}
-          <h3 className="mb-0.5 text-sm lg:mb-1 lg:text-base">{address}</h3>
-          <h2 className="text-lg font-extrabold lg:text-2xl">{title}</h2>
+          <h3 className="mb-0.5 text-sm lg:mb-1 lg:text-base">
+            {place.address}
+          </h3>
+          <h2 className="text-lg font-extrabold lg:text-2xl">{place.name}</h2>
 
           {/* Cafe type and distance from ITB */}
           <div className="flex flex-col gap-[1px] text-sm lg:text-base">
-            <h4>{type}</h4>
-            <h5>{formatDistance(distance)} from ITB</h5>
+            {/* <h4>{type}</h4> */}
+            <h5>{formattedDistance} from ITB</h5>
           </div>
 
           {/* Star rating */}
-          <StarRating rating={rating} />
+          <StarRating rating={place.rating} />
 
           {/* Starting price */}
           <h5 className="mt-0.5 text-[15px] lg:mt-1 lg:text-base">
-            {typeof startPrice === "string" ? (
-              <span className="text-lg font-bold lg:text-xl">{startPrice}</span>
-            ) : (
-              <>
-                Mulai dari{" "}
-                <span className="text-lg font-bold lg:text-xl">
-                  {formattedCurrency(startPrice)}
-                </span>
-              </>
-            )}
+            Mulai dari{" "}
+            <span className="text-lg font-bold lg:text-xl">
+              {formattedPriceStart}
+            </span>
           </h5>
         </div>
       </div>
