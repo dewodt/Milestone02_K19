@@ -31,3 +31,19 @@ Untuk menggunakan website ganeshaspace, klik [link](https://ganesha-space.vercel
 # 🚪 API End Point
 
 Hanya tersedia satu API Endpoint yaitu `/api/revalidate` yang berguna untuk On Demand Revalidation menggunakan webhook data CMS yang di render secara statis (static rendering).
+
+# Kontributor Pembuat
+
+Dewantoro Triatmojo 19622152 - Pembuat website ganeshaspace
+Moh Fairuz Alauddin Yahya 19622075 - Pembuat website ganeshaspace
+Benardo 19622051 - ide dan proposal
+Muhammad Roihan 19622306 - ide dan proposal
+Ahmad Farid Mudrika 19622218 - ide dan proposal
+Muhammad Yaafi Wasesa Putra 19622059 - ide dan proposal
+Steven Adrian Corne 19622207 - ide dan proposal
+Mohammad Andhika Fadillah 19622289 - ide dan proposal
+Hafizh Hananta Akbari 19622280 - ide dan proposal
+Farah Aulia 19622180 - ide dan proposal
+Chairul Nur Wahid 19622279 - ide dan proposal
+Nicolaas Heru Dreandachrista 19622044 - ide dan proposal
+Benedicta Eryka Santosa 19622208 - ide dan proposal
