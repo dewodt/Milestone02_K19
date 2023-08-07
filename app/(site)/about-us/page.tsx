@@ -1,9 +1,5 @@
 import type { Metadata } from "next/types";
 
-export const metadata: Metadata = {
-  title: "About Us | Ganesha Space",
-};
-
 const AboutUs = () => {
   return (
     <main className="flex flex-auto justify-center p-5 xl:p-20">
@@ -17,10 +13,10 @@ const AboutUs = () => {
           ganeshaspace adalah untuk membantu mahasiswa ITB yang merasakan
           kesulitan untuk mencari tempat makan ataupun coworking space di deket
           ITB. Website ini memberikan list beberapa cafe dengan jarak 3 km dari
-          ITB serta rekomendasi cafe yang bagus dan sesuai untuk kebutuhan
-          mahasiswa. Selain itu, pembuatan website ini juga ditujukan untuk
-          memenuhi tugas milestones SPARTA HMIF 2022. Semoga dengan pembuatan
-          website ini diharapkan dapat memberikan manfaat bagi mahasiswa ITB.
+          ITB yang menurut kami bagus dan sesuai untuk kebutuhan mahasiswa.
+          Selain itu, pembuatan website ini juga ditujukan untuk memenuhi tugas
+          milestones SPARTA HMIF 2022. Semoga dengan pembuatan website ini
+          diharapkan dapat memberikan manfaat bagi mahasiswa ITB.
         </p>
       </section>
     </main>
@@ -28,3 +24,43 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
+export const metadata: Metadata = {
+  title: "Ganesha Space",
+  description:
+    "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
+  generator: "Next.js",
+  applicationName: "Ganesha Space",
+  colorScheme: "dark",
+  openGraph: {
+    title: "Ganesha Space",
+    description:
+      "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
+    url: "https://ganesha-space.vercel.app/",
+    siteName: "Ganesha Space",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesha Space",
+    description:
+      "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+  },
+};

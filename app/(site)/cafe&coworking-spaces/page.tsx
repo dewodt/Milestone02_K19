@@ -3,11 +3,6 @@ import PlacesList from "./places-list";
 import { clientFetch } from "@/sanity/lib/client";
 import type { Place } from "@/types/cms";
 
-export const metadata: Metadata = {
-  title: "Ganesha Space | Cafe",
-  description: "...",
-};
-
 const CafeCoworkingSpaces = async () => {
   const places = await clientFetch<Place[]>("*[_type == 'places']");
 
@@ -26,3 +21,43 @@ const CafeCoworkingSpaces = async () => {
 };
 
 export default CafeCoworkingSpaces;
+
+export const metadata: Metadata = {
+  title: "Cafe & Coworking Spaces | Ganesha Space",
+  description:
+    "Memperlihatkan list semua cafe & coworking space yang tersedia dengan jarak 3 km dari ITB yang menurut kami bagus dan sesuai untuk kebutuhan mahasiswa.",
+  generator: "Next.js",
+  applicationName: "Ganesha Space",
+  colorScheme: "dark",
+  openGraph: {
+    title: "Ganesha Space",
+    description:
+      "Memperlihatkan list semua cafe & coworking space yang tersedia dengan jarak 3 km dari ITB yang menurut kami bagus dan sesuai untuk kebutuhan mahasiswa.",
+    url: "https://ganesha-space.vercel.app/",
+    siteName: "Ganesha Space",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesha Space",
+    description:
+      "Memperlihatkan list semua cafe & coworking space yang tersedia dengan jarak 3 km dari ITB yang menurut kami bagus dan sesuai untuk kebutuhan mahasiswa.",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+  },
+};
