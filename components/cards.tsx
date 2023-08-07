@@ -33,7 +33,7 @@ const Cards = async ({
   const formattedRating = getFormattedRating(place.rating);
 
   return (
-    <Link href={`/cafe/${_id}`}>
+    <Link href={`/cafe&coworking-spaces/${_id}`}>
       <article className="group flex flex-col gap-2">
         {/* Image */}
         <div className=" overflow-hidden rounded-lg">
