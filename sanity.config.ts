@@ -9,7 +9,7 @@ import { deskTool } from "sanity/desk";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import places from "./sanity/schemas/places";
-import recommendation from "./sanity/schemas/place-recommendation";
+import placeRecommendation from "./sanity/schemas/place-recommendation";
 import { HeartIcon } from "@sanity/icons";
 
 // Define the actions that should be available for singleton documents
@@ -24,7 +24,7 @@ export default defineConfig({
   dataset,
   // Add and edit the content schema in the './sanity/schema' folder
   schema: {
-    types: [places, recommendation],
+    types: [places, placeRecommendation],
 
     // Filter out singleton types from the global “New document” menu options
     templates: (templates) =>

@@ -24,7 +24,7 @@ export const POST = async (req: NextRequest) => {
   const { _type, _id }: { _type: string; _id: string } = await req.json();
 
   // Validate types
-  const types = ["places", "recommendation"];
+  const types = ["places", "placeRecommendation"];
   if (!types.includes(_type)) {
     return NextResponse.json(
       { error: "Bad Request", message: "Invalid type" },
@@ -40,7 +40,7 @@ export const POST = async (req: NextRequest) => {
   }
 
   // Revalidate recommendation place
-  if (_type === "recommendation") {
+  if (_type === "placeRecommendation") {
     revalidatePath("/");
   }
 
