@@ -26,14 +26,14 @@ const AboutUs = () => {
 export default AboutUs;
 
 export const metadata: Metadata = {
-  title: "Ganesha Space",
+  title: "About Us | Ganesha Space",
   description:
     "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
   generator: "Next.js",
   applicationName: "Ganesha Space",
   colorScheme: "dark",
   openGraph: {
-    title: "Ganesha Space",
+    title: "About Us | Ganesha Space",
     description:
       "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
     url: "https://ganesha-space.vercel.app/",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ganesha Space",
+    title: "About Us | Ganesha Space",
     description:
       "Memperlihatkan informasi mengenai alasan dan tujuan website ganesha space dibuat.",
     images: [
