@@ -35,7 +35,20 @@ export async function generateMetadata({
   };
 }
 
-const CafeCoworkingSpacesDetail = async ({ params }: { params: { id: string } }) => {
+// Generate static paths
+export const generateStaticParams = async () => {
+  const places = await clientFetch<Place[]>("*[_type == 'places']");
+
+  return places.map((place) => {
+    return { id: place._id };
+  });
+};
+
+const CafeCoworkingSpacesDetail = async ({
+  params,
+}: {
+  params: { id: string };
+}) => {
   // Get id
   const { id } = params;
 
