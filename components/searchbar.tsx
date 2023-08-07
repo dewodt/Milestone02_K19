@@ -25,8 +25,8 @@ const SearchBar = ({
 
   return (
     <div
-      className={`w-full rounded-full border-[1px] ${isFocused ? "border-custom-orange bg-transparent" : "border-white bg-[#202327]"
-        } flex items-center  px-6 lg:px-8 focus:border-custom-orange`}
+      className={`w-full rounded-full border-[1px] ${isFocused ? "border-custom-orange bg-transparent" : "border-white bg-transparent"
+        } flex items-center px-6 lg:px-8 focus:border-custom-orange`}
     >
       <div className="flex w-full items-center justify-between gap-4 py-2 lg:py-3">
         {/* Search Icon */}

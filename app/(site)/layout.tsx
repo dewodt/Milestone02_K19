@@ -21,7 +21,6 @@ const SiteLayout = ({ children }: { children: React.ReactNode }) => {
       className={`flex min-h-screen flex-col bg-custom-soft-black ${navBarExpanded && "overflow-hidden"
         }`}
     >
-
       <NavBar
         navBarExpanded={navBarExpanded}
         setNavBarExpanded={setNavBarExpanded}

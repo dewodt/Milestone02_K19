@@ -8,31 +8,15 @@ import {
   getFormattedHourMinute,
   getFormattedReviews,
 } from "@/lib/utils";
-import RenderPage from "./place-image";
 import CarIcon from "@/components/icons/car-icon";
 import SmokingIcon from "@/components/icons/smoking-icon";
 import UtenilsIcon from "@/components/icons/utenils-icon";
 import WifiIcon from "@/components/icons/wifi-icon";
 import StarRating from "@/components/star-rating";
 import PlaceImage from "./place-image";
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  // Get id
-  const { id } = params;
-
-  //  Get place data
-  const place = await clientFetch<Place>(
-    `*[_type == "places" && _id == "${id}"][0]`
-  );
-
-  return {
-    title: `${place.name} | Ganesha Space`,
-    description: toPlainText(place.about),
-  };
-}
+import SunIcon from "@/components/icons/sun-icon";
+import ACIcon from "@/components/icons/ac-icon";
+import SofaIcon from "@/components/icons/sofa-icon";
 
 // Generate static paths
 export const generateStaticParams = async () => {
@@ -200,6 +184,57 @@ const CafeCoworkingSpacesDetail = async ({
               </div>
             </div>
           )}
+          {/* Outdoor */}
+          {place.isOutdoorAvailable && (
+            <div className="flex gap-5 md:gap-7">
+              <SunIcon
+                size={40}
+                className="aspect-square w-[30px] fill-white sm:w-[30px] lg:w-[40px]"
+              />
+              <div className="flex flex-col gap-1">
+                <h3 className="font-poppins text-lg font-semibold capitalize md:text-xl lg:text-2xl">
+                  Ruang Terbuka
+                </h3>
+                <p className="font-inter text-sm lg:text-lg">
+                  Tersedia ruang terbuka yang dilengkapi dengan meja kerja outdoor.
+                </p>
+              </div>
+            </div>
+          )}
+          {/* Ergonomic */}
+          {place.isErgonomicTableChairAvailable && (
+            <div className="flex gap-5 md:gap-7">
+              <SofaIcon
+                size={40}
+                className="aspect-square w-[30px] fill-white sm:w-[30px] lg:w-[40px]"
+              />
+              <div className="flex flex-col gap-1">
+                <h3 className="font-poppins text-lg font-semibold capitalize md:text-xl lg:text-2xl">
+                  Meja dan Kursi Ergonomis
+                </h3>
+                <p className="font-inter text-sm lg:text-lg">
+                  Tersedia meja dan kursi ergonomis
+                </p>
+              </div>
+            </div>
+          )}
+          {/* Ergonomic */}
+          {place.isACRoomAvailable && (
+            <div className="flex gap-5 md:gap-7">
+              <ACIcon
+                size={40}
+                className="aspect-square w-[30px] fill-white sm:w-[30px] lg:w-[40px]"
+              />
+              <div className="flex flex-col gap-1">
+                <h3 className="font-poppins text-lg font-semibold capitalize md:text-xl lg:text-2xl">
+                  Ruangan ber-AC
+                </h3>
+                <p className="font-inter text-sm lg:text-lg">
+                  Ruangan dilengkapi AC sehingga suasana sejuk.
+                </p>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Horizontal line */}
@@ -249,3 +284,54 @@ const CafeCoworkingSpacesDetail = async ({
 };
 
 export default CafeCoworkingSpacesDetail;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  // Get id
+  const { id } = params;
+
+  //  Get place data
+  const place = await clientFetch<Place>(
+    `*[_type == "places" && _id == "${id}"][0]`
+  );
+
+  return {
+    title: `${place.name} | Ganesha Space`,
+    description: toPlainText(place.about),
+    generator: "Next.js",
+    applicationName: "Ganesha Space",
+    colorScheme: "dark",
+    openGraph: {
+      title: "Ganesha Space",
+      description: toPlainText(place.about),
+      url: "https://ganesha-space.vercel.app/",
+      siteName: "Ganesha Space",
+      images: [
+        {
+          url: "https://ganesha-space.vercel.app/link-preview.png",
+          width: 1200,
+          height: 630,
+          alt: "Ganesha Space Logo",
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Ganesha Space",
+      description: toPlainText(place.about),
+      images: [
+        {
+          url: "https://ganesha-space.vercel.app/link-preview.png",
+          width: 1200,
+          height: 630,
+          alt: "Ganesha Space Logo",
+        },
+      ],
+    },
+  };
+}

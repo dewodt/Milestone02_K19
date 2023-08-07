@@ -7,10 +7,6 @@ import type { Place } from "@/types/cms";
 import { urlForImage } from "@/sanity/lib/image";
 import { clientFetch } from "@/sanity/lib/client";
 
-export const metadata: Metadata = {
-  title: "Ganesha Space",
-};
-
 const Home = async () => {
   // Fetch datas from CMS
   const places = await clientFetch<Place[]>("*[_type == 'places']");
@@ -157,3 +153,43 @@ const Home = async () => {
 };
 
 export default Home;
+
+export const metadata: Metadata = {
+  title: "Ganesha Space",
+  description:
+    "Ganesha space bertujuan untuk membantu mahasiswa ITB yang merasakan kesulitan untuk mencari tempat makan ataupun coworking space di deket ITB. Website ini memberikan list beberapa cafe dengan jarak 3 km dari ITB serta rekomendasi cafe yang bagus dan sesuai untuk kebutuhan mahasiswa.",
+  generator: "Next.js",
+  applicationName: "Ganesha Space",
+  colorScheme: "dark",
+  openGraph: {
+    title: "Ganesha Space",
+    description:
+      "Ganesha space bertujuan untuk membantu mahasiswa ITB yang merasakan kesulitan untuk mencari tempat makan ataupun coworking space di deket ITB. Website ini memberikan list beberapa cafe dengan jarak 3 km dari ITB serta rekomendasi cafe yang bagus dan sesuai untuk kebutuhan mahasiswa.",
+    url: "https://ganesha-space.vercel.app/",
+    siteName: "Ganesha Space",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesha Space",
+    description:
+      "Ganesha space bertujuan untuk membantu mahasiswa ITB yang merasakan kesulitan untuk mencari tempat makan ataupun coworking space di deket ITB. Website ini memberikan list beberapa cafe dengan jarak 3 km dari ITB serta rekomendasi cafe yang bagus dan sesuai untuk kebutuhan mahasiswa.",
+    images: [
+      {
+        url: "https://ganesha-space.vercel.app/link-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ganesha Space Logo",
+      },
+    ],
+  },
+};
