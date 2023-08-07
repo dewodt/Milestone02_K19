@@ -8,7 +8,8 @@ Ganesha space bertujuan untuk membantu mahasiswa ITB yang merasakan kesulitan un
 
 # ⚙️ How to Use
 
-Untuk menggunakan website ganeshaspace, klik [link](https://ganesha-space.vercel.app/) ini.
+- Untuk menggunakan website ganeshaspace, klik [Link Website](https://ganesha-space.vercel.app/).
+- Untuk mengakses content management system website, klik [Link CMS](https://ganesha-space.vercel.app/studio).
 
 # 🛠️ Frameworks / Tools Used
 
@@ -32,7 +33,7 @@ Untuk menggunakan website ganeshaspace, klik [link](https://ganesha-space.vercel
 
 Hanya tersedia satu API Endpoint yaitu `/api/revalidate` yang berguna untuk On Demand Revalidation menggunakan webhook data CMS yang di render secara statis (static rendering).
 
-# Kontributor Pembuat
+# 📈 Kontributor Pembuat
 
 - Dewantoro Triatmojo 19622152 - Pembuat website (home page, about us page, dan connect CMS dengan website)
 - Moh Fairuz Alauddin Yahya 19622075 - Pembuat website (cafe & coworking space list page dan cafe & coworking space detail page)
