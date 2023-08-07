@@ -16,25 +16,6 @@ import SmokingIcon from "@/components/icons/smoking-icon";
 import UtenilsIcon from "@/components/icons/utenils-icon";
 import WifiIcon from "@/components/icons/wifi-icon";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
-  // Get id
-  const { id } = params;
-
-  //  Get place data
-  const place = await clientFetch<Place>(
-    `*[_type == "places" && _id == "${id}"][0]`
-  );
-
-  return {
-    title: `${place.name} | Ganesha Space`,
-    description: toPlainText(place.about),
-  };
-}
-
 // Generate static paths
 export const generateStaticParams = async () => {
   const places = await clientFetch<Place[]>("*[_type == 'places']");
@@ -322,3 +303,54 @@ const CafeCoworkingSpacesDetail = async ({
 };
 
 export default CafeCoworkingSpacesDetail;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  // Get id
+  const { id } = params;
+
+  //  Get place data
+  const place = await clientFetch<Place>(
+    `*[_type == "places" && _id == "${id}"][0]`
+  );
+
+  return {
+    title: `${place.name} | Ganesha Space`,
+    description: toPlainText(place.about),
+    generator: "Next.js",
+    applicationName: "Ganesha Space",
+    colorScheme: "dark",
+    openGraph: {
+      title: "Ganesha Space",
+      description: toPlainText(place.about),
+      url: "https://ganesha-space.vercel.app/",
+      siteName: "Ganesha Space",
+      images: [
+        {
+          url: "https://ganesha-space.vercel.app/link-preview.png",
+          width: 1200,
+          height: 630,
+          alt: "Ganesha Space Logo",
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Ganesha Space",
+      description: toPlainText(place.about),
+      images: [
+        {
+          url: "https://ganesha-space.vercel.app/link-preview.png",
+          width: 1200,
+          height: 630,
+          alt: "Ganesha Space Logo",
+        },
+      ],
+    },
+  };
+}
