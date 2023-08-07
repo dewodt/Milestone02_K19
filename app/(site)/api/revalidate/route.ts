@@ -1,9 +1,8 @@
-import { NextResponse } from "next/server";
-import type { NextApiRequest } from "next";
+import { NextResponse, type NextRequest } from "next/server";
 import { isValidRequest } from "@sanity/webhook";
 import { revalidatePath } from "next/cache";
 
-const POST = async (req: NextApiRequest) => {
+export const POST = async (req: NextRequest) => {
   // Bad request
   if (req.method !== "POST") {
     return NextResponse.json(
@@ -14,7 +13,7 @@ const POST = async (req: NextApiRequest) => {
 
   // Unathorized request
   const secret = process.env.SANITY_REVALIDATE_SECRET as string;
-  if (!isValidRequest(req, secret)) {
+  if (!isValidRequest(req as any, secret)) {
     return NextResponse.json(
       { error: "Unathorized Request", message: "Wrong token" },
       { status: 401 }
@@ -22,7 +21,7 @@ const POST = async (req: NextApiRequest) => {
   }
 
   // Get body content
-  const { _type, _id }: { _type: string; _id: string } = req.body;
+  const { _type, _id }: { _type: string; _id: string } = await req.json();
 
   // Revalidate places
   if (_type === "places") {
@@ -41,5 +40,3 @@ const POST = async (req: NextApiRequest) => {
     { status: 200 }
   );
 };
-
-export default POST;
