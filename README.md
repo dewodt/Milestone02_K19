@@ -34,8 +34,8 @@ Hanya tersedia satu API Endpoint yaitu `/api/revalidate` yang berguna untuk On D
 
 # Kontributor Pembuat
 
-- Dewantoro Triatmojo 19622152 - Pembuat website ganeshaspace
-- Moh Fairuz Alauddin Yahya 19622075 - Pembuat website ganeshaspace
+- Dewantoro Triatmojo 19622152 - Pembuat website (home page, about us page, dan connect CMS dengan website)
+- Moh Fairuz Alauddin Yahya 19622075 - Pembuat website (cafe & coworking space list page dan cafe & coworking space detail page)
 - Benardo 19622051 - ide dan proposal
 - Muhammad Roihan 19622306 - ide dan proposal
 - Ahmad Farid Mudrika 19622218 - ide dan proposal
