@@ -13,7 +13,6 @@ import CarIcon from "@/components/icons/car-icon";
 import SmokingIcon from "@/components/icons/smoking-icon";
 import UtenilsIcon from "@/components/icons/utenils-icon";
 import WifiIcon from "@/components/icons/wifi-icon";
-import { urlForImage } from "@/sanity/lib/image";
 import StarRating from "@/components/star-rating";
 import PlaceImage from "./place-image";
 export async function generateMetadata({

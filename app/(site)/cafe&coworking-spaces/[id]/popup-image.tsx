@@ -13,12 +13,10 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import Image from "next/image";
-
-import CircleCrossIcon from "@/components/icons/circle-cross-icon";
-import { PopUpContext } from "../../layout";
+import { ImagesPopUp } from "../../layout";
 import CrossIcon from "@/components/icons/cross-icon";
-const PopUpClient = ({ place, initialSlide }: { place: Place, initialSlide: number }) => {
-    const setPopUp = useContext(PopUpContext) as React.Dispatch<
+const PopupImage = ({ place, initialSlide }: { place: Place, initialSlide: number }) => {
+    const setPopUp = useContext(ImagesPopUp) as React.Dispatch<
         React.SetStateAction<React.ReactNode | undefined>
     >;
     // Get formatted values
@@ -26,7 +24,6 @@ const PopUpClient = ({ place, initialSlide }: { place: Place, initialSlide: numb
     const swiperRef = useRef<any>(null);
 
 
-    // Function to handle Swiper instance update
     // Function to handle Swiper instance update
     const handleThumbsSwiperUpdate = (swiper: SwiperType | null) => {
         setThumbsSwiper(swiper);
@@ -44,7 +41,7 @@ const PopUpClient = ({ place, initialSlide }: { place: Place, initialSlide: numb
     return (
         <div className={`h-screen bg-custom-soft-black w-screen transition-opacity duration-300 overflow-hidden fixed z-[999]`}>
             <>
-                <div className="bg-black w-screen flex items-center justify-between p-5 lg:py-10 lg:px-20 absolute top-0 z-[99]">
+                <div className="bg-black w-screen flex items-center justify-between p-5 lg:py-6 lg:px-20 absolute top-0 z-[99]">
                     <h1 className="text-white text-xl break-all lg:text-4xl font-bold font-poppins">{place.name}</h1>
                     <button onClick={() => setPopUp(undefined)} className="aspect-square rounded-full ">
                         <CrossIcon size={160} className="fill-white w-8 h-8 lg:w-14 lg:h-14" />
@@ -114,4 +111,4 @@ const PopUpClient = ({ place, initialSlide }: { place: Place, initialSlide: numb
     );
 }
 
-export default PopUpClient
+export default PopupImage

@@ -4,8 +4,8 @@ const Footer = () => {
   // List of paths
   const paths = [
     {
-      name: "Coworking Spaces",
-      url: "/coworking-spaces",
+      name: "Cafe & Coworking Spaces",
+      url: "/cafe&coworking-spaces",
     },
     {
       name: "About Us",

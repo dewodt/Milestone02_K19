@@ -138,6 +138,24 @@ const places: SchemaTypeDefinition = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "isOutdoorAvailable",
+      type: "boolean",
+      title: "Outdoor",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "isACRoomAvailable",
+      type: "boolean",
+      title: "AC Rooms",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "isErgonomicTableChairAvailable",
+      type: "boolean",
+      title: "Ergonomic Tables & Chairs",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "about",
       title: "About",
       type: "array",

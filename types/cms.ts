@@ -28,5 +28,8 @@ export interface Place {
   isFoodMenuAvailable: boolean;
   isParkingSpaceAvailable: boolean;
   isSmokingAreaAvailable: boolean;
+  isErgonomicTableChairAvailable: boolean;
+  isACRoomAvailable: boolean;
+  isOutdoorAvailable: boolean;
   about: PortableTextBlock | ArbitraryTypedObject[] | PortableTextBlock[];
 }

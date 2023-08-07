@@ -8,11 +8,11 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import Image from 'next/image';
-import { PopUpContext } from '../../layout';
-import PopUpClient from './popup-client';
+import { ImagesPopUp } from '../../layout';
+import PopupImage from './popup-image';
 const PlaceImage = ({ place }: { place: Place }) => {
-
-    const setPopUp = useContext(PopUpContext) as React.Dispatch<
+    // State to zoom details image
+    const setPopUp = useContext(ImagesPopUp) as React.Dispatch<
         React.SetStateAction<React.ReactNode | undefined>
     >;
     return (
@@ -20,7 +20,7 @@ const PlaceImage = ({ place }: { place: Place }) => {
             {/* First Image */}
             {place.images[0] && (
                 <button onClick={() => {
-                    setPopUp(<PopUpClient place={place} initialSlide={0} />)
+                    setPopUp(<PopupImage place={place} initialSlide={0} />)
                 }}
                     className={`${place.images.length === 1
                         ? "w-full"
@@ -41,15 +41,15 @@ const PlaceImage = ({ place }: { place: Place }) => {
                     className={`flex w-full ${place.images.length > 3 ? "flex-row" : "flex-col"
                         } gap-2 md:gap-4 lg:gap-6 ${place.images.length > 3
                             ? "h-[calc(50%-6px)] md:h-[calc(50%-8px)] lg:h-[calc(50%-12px)]"
-                            :"h-full"
+                            : "h-full"
                         }`}
                 >
                     {place.images[1] && (
                         <button onClick={() => {
-                            setPopUp(<PopUpClient place={place} initialSlide={1} />)
+                            setPopUp(<PopupImage place={place} initialSlide={1} />)
                         }} className={`${place.images.length > 3
                             ? "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)] h-full"
-                            : place.images.length ===3?"w-full h-1/2":"w-full h-full"
+                            : place.images.length === 3 ? "w-full h-[calc(50%-6px)] md:h-[calc(50%-8px)] lg:h-[calc(50%-12px)]" : "w-full h-full"
                             } `}>
                             <Image
                                 src={urlForImage(place.images[1]).url()}
@@ -61,7 +61,7 @@ const PlaceImage = ({ place }: { place: Place }) => {
                     )}
                     {place.images[2] && (
                         <button onClick={() => {
-                            setPopUp(<PopUpClient place={place} initialSlide={2} />)
+                            setPopUp(<PopupImage place={place} initialSlide={2} />)
                         }} className={`${place.images.length === 3
                             ? "w-full h-[calc(50%-6px)] md:h-[calc(50%-8px)] lg:h-[calc(50%-12px)]"
                             : "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)] h-full"
@@ -80,7 +80,7 @@ const PlaceImage = ({ place }: { place: Place }) => {
                 <div className="flex h-[calc(50%-6px)] w-full gap-2 md:h-[calc(50%-8px)] md:gap-4 lg:h-[calc(50%-12px)] lg:gap-6">
                     {place.images[3] && (
                         <button onClick={() => {
-                            setPopUp(<PopUpClient place={place} initialSlide={3} />)
+                            setPopUp(<PopupImage place={place} initialSlide={3} />)
                         }} className={`${place.images.length === 4
                             ? "w-full"
                             : "w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]"
@@ -96,7 +96,7 @@ const PlaceImage = ({ place }: { place: Place }) => {
                     )}
                     {place.images[4] && (
                         <button onClick={() => {
-                            setPopUp(<PopUpClient place={place} initialSlide={4} />)
+                            setPopUp(<PopupImage place={place} initialSlide={4} />)
                         }} className="relative w-[calc(50%-6px)] md:w-[calc(50%-8px)] lg:w-[calc(50%-12px)]">
                             <Image
                                 src={urlForImage(place.images[4]).url()}

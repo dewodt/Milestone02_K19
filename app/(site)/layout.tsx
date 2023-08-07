@@ -4,7 +4,7 @@ import { useState, useEffect, createContext } from "react";
 import { usePathname } from "next/navigation";
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
-export const PopUpContext = createContext({});
+export const ImagesPopUp = createContext({});
 
 const SiteLayout = ({ children }: { children: React.ReactNode }) => {
   // Navbar State
@@ -26,9 +26,9 @@ const SiteLayout = ({ children }: { children: React.ReactNode }) => {
         navBarExpanded={navBarExpanded}
         setNavBarExpanded={setNavBarExpanded}
       />
-      <PopUpContext.Provider value={setPopUp}>
+      <ImagesPopUp.Provider value={setPopUp}>
         {popUp ? <>{popUp}</> : children}
-      </PopUpContext.Provider>
+      </ImagesPopUp.Provider>
       <Footer />
     </body>
   );
