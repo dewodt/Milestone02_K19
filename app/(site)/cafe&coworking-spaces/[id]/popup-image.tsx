@@ -41,7 +41,7 @@ const PopupImage = ({ place, initialSlide }: { place: Place, initialSlide: numbe
     return (
         <div className={`h-screen bg-custom-soft-black w-screen transition-opacity duration-300 overflow-hidden fixed z-[999]`}>
             <>
-                <div className="bg-black w-screen flex items-center justify-between p-5 lg:py-6 lg:px-20 absolute top-0 z-[99]">
+                <div className="bg-black w-screen flex items-center justify-between p-5 2xl:py-6 lg:px-20 absolute top-0 z-[99]">
                     <h1 className="text-white text-xl break-all lg:text-4xl font-bold font-poppins">{place.name}</h1>
                     <button onClick={() => setPopUp(undefined)} className="aspect-square rounded-full ">
                         <CrossIcon size={160} className="fill-white w-8 h-8 lg:w-14 lg:h-14" />
@@ -72,28 +72,28 @@ const PopupImage = ({ place, initialSlide }: { place: Place, initialSlide: numbe
                         centeredSlidesBounds={true}
                         breakpoints={{
                             320: {
-                              slidesPerView: 2,
-                              spaceBetween:0
+                                slidesPerView: 2,
+                                spaceBetween: 0
                             },
                             480: {
                                 slidesPerView: 2,
-                                spaceBetween:0
+                                spaceBetween: 0
                             },
                             640: {
                                 slidesPerView: 2,
-                                spaceBetween:5
+                                spaceBetween: 5
                             },
-                            720:{
+                            720: {
                                 slidesPerView: 5,
-                                spaceBetween:5
+                                spaceBetween: 5
                             },
-                            1280:{
+                            1280: {
                                 slidesPerView: 5,
-                                spaceBetween:10
-                                
+                                spaceBetween: 10
+
                             }
-                          }}
-                        
+                        }}
+
                         freeMode={true}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
