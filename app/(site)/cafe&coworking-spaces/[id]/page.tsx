@@ -40,7 +40,6 @@ const CafeCoworkingSpacesDetail = async ({
     `*[_type == "places" && _id == "${id}"][0]`
   );
 
-
   // Get formatted values
   const formattedReview = getFormattedReviews(place.reviews);
   const formattedDistance = getFormattedDistance(place.distanceFromITB);
@@ -55,7 +54,9 @@ const CafeCoworkingSpacesDetail = async ({
 
   return (
     <>
-      <div className={` bg-[#1c1a17] transition-opacity duration-1000 flex min-h-screen w-full flex-col gap-6 px-6 py-6 md:px-12 lg:gap-10 lg:px-16 lg:py-10 2xl:px-48`}>
+      <div
+        className={` flex min-h-screen w-full flex-col gap-6 bg-[#1c1a17] px-6 py-6 transition-opacity duration-1000 md:px-12 lg:gap-10 lg:px-16 lg:py-10 2xl:px-48`}
+      >
         {/* Title */}
         <h1 className=" font-poppins text-2xl font-bold text-white md:text-3xl lg:text-4xl">
           {place.name}
@@ -80,7 +81,7 @@ const CafeCoworkingSpacesDetail = async ({
         {/* Details Access */}
         <section className="ml-auto flex flex-col gap-3 text-right text-white md:gap-4 lg:gap-6">
           {/* Price */}
-          {!isNaN(place.priceStart) &&
+          {!isNaN(place.priceStart) && (
             <div className="flex flex-col gap-1">
               <p className="text-base lg:text-xl">Kisaran harga menu: </p>
               <h3 className="text-sm lg:text-xl">
@@ -91,7 +92,7 @@ const CafeCoworkingSpacesDetail = async ({
                 </span>
               </h3>
             </div>
-          }
+          )}
           {/* Distance */}
           <div className="flex flex-col">
             <p className="text-base lg:text-xl">Jarak dari ITB: </p>
@@ -196,7 +197,8 @@ const CafeCoworkingSpacesDetail = async ({
                   Ruang Terbuka
                 </h3>
                 <p className="font-inter text-sm lg:text-lg">
-                  Tersedia ruang terbuka yang dilengkapi dengan meja kerja outdoor.
+                  Tersedia ruang terbuka yang dilengkapi dengan meja kerja
+                  outdoor.
                 </p>
               </div>
             </div>
@@ -277,9 +279,7 @@ const CafeCoworkingSpacesDetail = async ({
         {/* Horizontal line */}
         <span className="h-0.5 w-full bg-white" />
       </div>
-
     </>
-
   );
 };
 
