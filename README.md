@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+<img src="" alt="Ganesha Space Logo" width="500">
+</p>
 
-## Getting Started
+# 📍 Description
 
-First, run the development server:
+Website ganesha space dibuat bertujuan untuk membantu mahasiswa ITB yang merasakan kesulitan untuk mencari tempat makan ataupun coworking space di deket ITB. Website ini memberikan list beberapa cafe dengan jarak 3 km dari ITB serta rekomendasi cafe yang bagus dan sesuai untuk kebutuhan mahasiswa. Selain itu, pembuatan website ini juga ditujukan untuk memenuhi tugas milestones SPARTA HMIF 2022. Semoga dengan pembuatan website ini diharapkan dapat memberikan manfaat bagi mahasiswa ITB.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+# ⚙️ How to Use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Untuk menggunakan website ganeshaspace, klik [link](https://ganesha-space.vercel.app/) ini.
 
-You can start editing the page by modifying `app/page.tsx`. The page will auto-updates as you edit the file.
+# 🛠️ Frameworks / Tools Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- NextJS App Router (Fullstack Framework)
+- React (JS Library)
+- TailwindCSS (CSS Framework)
+- Typescript (Typesafe for JavaScript)
+- Sanity (Content Management System)
 
-## Learn More
+# 🌐 Pages
 
-To learn more about Next.js, take a look at the following resources:
+- Home Page: Memperlihatkan beberapa tempat-tempat yang paling populer (review terbanyak), paling dicintai (rating tertinggi), harga mulai paling murah, dan juga tempat rekomendasi kami.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Cafe & Coworking Space List Page: Memperlihatkan list semua cafe yang tersedia di CMS. Tersedia juga search bar untuk mencari cafe dan juga pagination.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Cafe & Coworoking Space Detail Page: Memperlihatkan informasi lebih detail dari suatu cafe/coworking space seperti reivew, alamat, kisaran harga menu, beberapa gambar tempat, jarak dari ITB, jam buka, fasilitas-fasilitas yang tersedia, deskripsi mengenai tempat tersebut, dan juga embed gooogle maps.
 
-## Deploy on Vercel
+- About Us Page: Memperlihatkan informasi alasan dan tujuan website ganesha space dibuat.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🚪 API End Point
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Hanya tersedia satu API Endpoint yaitu `/api/revalidate` yang berguna untuk On Demand Revalidation menggunakan webhook data CMS yang di render secara statis (static rendering).
